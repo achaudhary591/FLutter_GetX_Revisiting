@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx_revisiting/components/my_button.dart';
 import 'package:getx_revisiting/config/colors.dart';
+import 'package:getx_revisiting/controller/calculator_controller.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    CalculatorController calculatorController = Get.put(CalculatorController());
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              flex: 5,
+              flex: 6,
               child: Container(
                 padding: const EdgeInsets.all(20),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Column(
@@ -24,29 +27,38 @@ class HomePage extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              '1233',
-                              style: TextStyle(
-                                color: buttonColor,
-                                fontSize: 45,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
+                            Obx(() {
+                              if(calculatorController.outputValue.value == 0.0){
+                                return SizedBox();
+                              }
+                              else{
+                                return Text(
+                                  '${calculatorController.outputValue.value}',
+                                  style: const TextStyle(
+                                    color: buttonColor,
+                                    fontSize: 45,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                );
+                              }
+                            }),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
                           children: [
-                            Text(
-                              '123456-45678+7463',
-                              style: TextStyle(
-                                color: textColor,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            Obx(() {
+                              return Text(
+                                calculatorController.inputValue.value,
+                                style: const TextStyle(
+                                  color: textColor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            }),
                           ],
                         ),
                       ],
@@ -56,49 +68,33 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 11,
+              flex: 10,
               child: Container(
                 color: whiteColor,
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.backspace,
-                          color: labelColor,
-                        ),
-                        SizedBox(
-                          width: 36,
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        MyButton(
+                        const MyButton(
                           btnName: 'C',
                           isFunction: true,
                         ),
-                        MyButton(
+                        const MyButton(
                           btnName: '%',
                           isFunction: true,
                         ),
-                        MyButton(
-                          btnName: '&',
-                          isFunction: true,
-                        ),
-                        MyButton(
+                        const MyButton(
                           btnName: '/',
                           isFunction: true,
                         ),
+                        IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.backspace),
+                        ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MyButton(
@@ -116,7 +112,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MyButton(
@@ -134,7 +130,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MyButton(
@@ -152,7 +148,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MyButton(

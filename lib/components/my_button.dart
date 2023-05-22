@@ -13,7 +13,6 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     CalculatorController calculatorController = Get.put(CalculatorController());
     return InkWell(
-      splashColor: Colors.greenAccent,
       onTap: (){
         calculatorController.onPress(btnName);
       },

@@ -5,11 +5,12 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'home_page.dart';
+import 'localisation/lang_view.dart';
 
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox('DB');
-  runApp(const MyApp());
+  runApp(LangView());
 }
 
 class MyApp extends StatelessWidget {
