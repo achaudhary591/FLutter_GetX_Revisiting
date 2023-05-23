@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Obx(() {
                               if(calculatorController.outputValue.value == 0.0){
-                                return SizedBox();
+                                return const SizedBox();
                               }
                               else{
                                 return Text(
